@@ -9,10 +9,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.robertosouza.cursomc.domain.Categoria;
-import com.robertosouza.cursomc.domain.Cliente;
 import com.robertosouza.cursomc.dto.CategoriaDTO;
 import com.robertosouza.cursomc.repositories.CategoriaRepository;
 import com.robertosouza.cursomc.resources.exceptions.DataIntegrityException;
@@ -29,6 +27,7 @@ public class CategoriaService {
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 		"Objeto não encontrado! Id: " + id + ", Tipo: " + Categoria.class.getName()));
 	}
+	
 	
 	public Categoria insert(Categoria obj) {
 		obj.setId(null);
