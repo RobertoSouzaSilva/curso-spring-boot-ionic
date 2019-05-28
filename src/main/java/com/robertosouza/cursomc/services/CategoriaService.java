@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.robertosouza.cursomc.domain.Categoria;
+import com.robertosouza.cursomc.domain.Cliente;
 import com.robertosouza.cursomc.dto.CategoriaDTO;
 import com.robertosouza.cursomc.repositories.CategoriaRepository;
 import com.robertosouza.cursomc.resources.exceptions.DataIntegrityException;
@@ -35,7 +36,8 @@ public class CategoriaService {
 	}
 	
 	public Categoria update(Categoria obj) {
-		find(obj.getId());
+		Categoria newObj = find(obj.getId());
+		updateData(newObj, obj);
 		return repo.save(obj);
 	}
 	
@@ -60,5 +62,9 @@ public class CategoriaService {
 	
 	public Categoria fromDTO(CategoriaDTO objDto) {
 		return new Categoria(objDto.getId(), objDto.getNome());
+	}
+	
+	private void updateData(Categoria newObj, Categoria obj) {
+		newObj.setNome(obj.getNome());
 	}
 }
