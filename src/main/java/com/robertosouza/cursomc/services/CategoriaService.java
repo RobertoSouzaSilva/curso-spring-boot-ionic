@@ -21,13 +21,12 @@ public class CategoriaService {
 	
 	@Autowired
 	private CategoriaRepository repo;
-	
+
 	public Categoria find(Integer id) {
 		Optional<Categoria> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
-		"Objeto não encontrado! Id: " + id + ", Tipo: " + Categoria.class.getName()));
+				"Objeto não encontrado! Id: " + id + ", Tipo: " + Categoria.class.getName()));
 	}
-	
 	
 	public Categoria insert(Categoria obj) {
 		obj.setId(null);
@@ -37,16 +36,16 @@ public class CategoriaService {
 	public Categoria update(Categoria obj) {
 		Categoria newObj = find(obj.getId());
 		updateData(newObj, obj);
-		return repo.save(obj);
+		return repo.save(newObj);
 	}
 	
 	public void delete(Integer id) {
 		find(id);
 		try {
 			repo.deleteById(id);
-		} 
+		}
 		catch (DataIntegrityViolationException e) {
-			throw new DataIntegrityException("não é possivel excluir uma categoria com produtos");
+			throw new DataIntegrityException("Não é possível excluir uma categoria que possui produtos");
 		}
 	}
 	
