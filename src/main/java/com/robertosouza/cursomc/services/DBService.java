@@ -52,7 +52,7 @@ public class DBService {
 	@Autowired
 	private ItemPedidoRepository itemPedidoRepository;
 	
-	public void instantiateTestDataBase() throws ParseException {
+	public void instantiateTestDatabase() throws ParseException {
 		
 	Categoria cat1 = new Categoria(null, "informática");
 	Categoria cat2 = new Categoria(null, "escritório");
@@ -134,7 +134,7 @@ public class DBService {
 	Pagamento pagto1 = new PagamentoComCartao(null, EstadoPagamento.QUITADO, ped1, 6);
 	ped1.setPagamento(pagto1);
 	
-	Pagamento pagto2 = new PagamentoComBoleto(null, EstadoPagamento.PENDENTE, ped2, sdf.parse("20/10/20170 00:00"), null);
+	Pagamento pagto2 = new PagamentoComBoleto(null, EstadoPagamento.PENDENTE, ped2, sdf.parse("20/10/2017 00:00"), null);
 	ped2.setPagamento(pagto2);
 	
 	pedidoRepository.saveAll(Arrays.asList(ped1, ped2));
